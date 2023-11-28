@@ -7,8 +7,21 @@ const photoURL = document.getElementById('photo')
 
 form.addEventListener('submit',(event)=>{
     event.preventDefault()
-    if(password.value === confirmPassword){
-        fetch('http://localhost:3000/')
+    if(password.value === confirmPassword.value){
+        fetch('http://localhost:3000/api/user/register',{
+            method:'POST',
+            body:JSON.stringify({
+                email:email.value,
+                password:password.value,
+                photo:photoURL.value,
+                name:nombre.value
+            }),
+            headers:{
+                "Content-Type": "application/json",
+            }
+        }).then((error)=>{
+            console.log('res',res)
+        })
     }else{
         document.getElementById("password-no-match").style.display= 'block'
     }

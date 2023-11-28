@@ -1,4 +1,5 @@
 const crypto = require('crypto')
+const jwt = require('jsonwebtoken')
 const createHashAndSalt = (password)=>{
     const salt = crypto.randomBytes(16).toString('hex');
     const hash = crypto.pbkdf2Sync(password, salt, 1000, 64, 'sha512').toString('hex');
@@ -14,7 +15,21 @@ const comparePasswords = (password,hash,salt) =>{
     return hash === newHash
 }
 
+const createToken = (data)=>{
+    const token = jwt.sign({
+        data:data
+    },'secret')
+    return token
+}
+
+const validateToken=(token)=>{
+    const verified = jwt.verify(token,'secret')
+    return verified
+}
+
 module.exports = {
     createHashAndSalt:createHashAndSalt,
-    comparePasswords:comparePasswords
+    comparePasswords:comparePasswords,
+    createToken:createToken,
+    validateToken:validateToken,
 }
