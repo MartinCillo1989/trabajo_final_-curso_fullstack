@@ -16,12 +16,11 @@ form.addEventListener('submit',(event)=>{
         }
     }).then(async (res)=>{
         const token = await res.text()
-        document.cookie = 'token='+token
-        console.log('token',token)
-        window.location.href = 'http://localhost:3000/home/'+token
+        document.cookie = "token="+token
+        window.location.href = 'http://localhost:3000/'
     })
-    .catch(async (error)=>{
-        const error = await err.text()
+    .catch((err)=>{
+        //console.log('token',token)
         console.error(err)
     })
 })

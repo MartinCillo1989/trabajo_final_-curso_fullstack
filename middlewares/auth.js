@@ -1,7 +1,10 @@
+const userUtils = require('../utils/userUtils')
 const authMiddleware = (req,res,next)=>{
-    const token = req.cook
     console.log('Cookies: ', req.cookies)
-    req.user = 'pepe'
+    const token = req.cookies.token
+    const user = userUtils.validateToken(token)
+    console.log('user', user)
+    req.user = user
     next()
     
 }
