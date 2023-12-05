@@ -2,6 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const viewsRouter = require('./routers/viewsRoutes')
 const userRoutes = require('./routers/userRoutes')
+const cookieParser = require('cookie-parser')
 const cors = require('cors')
 const { default: mongoose } = require('mongoose')
 const app = express()
@@ -10,6 +11,7 @@ const port = 3000
 //midlware
 app.use(bodyParser.json())
 app.use(cors())
+app.use(cookieParser())
 app.use(express.static('public'))
 app.set('view engine','ejs');
 

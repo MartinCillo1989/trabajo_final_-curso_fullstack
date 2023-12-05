@@ -7,7 +7,11 @@ const register=(req,res)=>{
 }
 
 const home = (req,res)=>{
-    res.render('pages/home.ejs')
+    if(req.user)
+    {res.render('pages/home.ejs')}
+    else{
+        res.redirect('http://localhost:3000/login')
+    }
 }
 
 module.exports={

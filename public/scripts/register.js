@@ -19,7 +19,7 @@ form.addEventListener('submit',(event)=>{
             headers:{
                 "Content-Type": "application/json",
             }
-        }).then((error)=>{
+        }).then((res)=>{
             console.log('res',res)
         })
     }else{

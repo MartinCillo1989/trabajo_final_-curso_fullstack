@@ -9,6 +9,8 @@ const login= async (req,res)=>{
     if(matchPassword){
      const token=userUtils.createToken(user)
      res.status(200).send(token)
+    }else{
+        res.status(400).send('password no match')
     }
     
 
