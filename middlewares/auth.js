@@ -1,11 +1,20 @@
 const userUtils = require('../utils/userUtils')
 const authMiddleware = (req,res,next)=>{
-    console.log('Cookies: ', req.cookies)
     const token = req.cookies.token
-    const user = userUtils.validateToken(token)
-    console.log('user', user)
-    req.user = user
-    next()
+    if(token){
+        const user = userUtils.validateToken(token)
+        if(user){
+        req.user = user.data
+        next()
+        }
+        else{
+            res.redirect('http://localhost:3000/login')
+        }
+    
+   }else{
+    res.redirect('http://localhost:3000/login')
+   }
+    
     
 }
 

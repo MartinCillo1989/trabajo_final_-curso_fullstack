@@ -19,12 +19,14 @@
                 <img src="./photo_profile.webp" alt="Usuario" class="user-image" onclick="toggleMenu()">
                 <div class="user-menu" id="userMenu">
                     <p><strong><%= user.name %></strong></p>
+                    <% if (user.isAdmin) { %>
                     <span id="admin-label">Admin</span>
-                    <a href="#">Dashboard</a>
+                    <a href="./dashboard">Dashboard</a>
+                    <% } %>
                     <a href="#">Carrito de Compras</a>
                     <a href="#">Mis compras</a>
                     <a href="#">Editar Perfil</a>
-                    <a href="#">Salir</a>
+                    <a onclick="logout()">Salir</a>
                 </div>
             </div>
         </nav>
@@ -100,6 +102,11 @@
         function toggleMenu() {
             var userMenu = document.getElementById("userMenu");
             userMenu.style.display = (userMenu.style.display === "flex") ? "none" : "flex";
+        }
+        async function logout(){
+           await fetch('http://localhost:3000/api/logout')
+           document.cookie = "token= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
+           window.location.href='http://localhost:3000/login'
         }
     </script>
 </body>

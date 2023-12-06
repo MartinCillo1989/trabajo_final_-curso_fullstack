@@ -8,14 +8,19 @@ const register=(req,res)=>{
 
 const home = (req,res)=>{
     if(req.user)
-    {res.render('pages/home.ejs',{user:req.user.data})}
+    {res.render('pages/home.ejs',{user:req.user})}
     else{
         res.redirect('http://localhost:3000/login')
     }
+}
+
+const dashboard = (req,res)=>{
+    res.render('pages/dashboard.ejs');
 }
 
 module.exports={
     login:login,
     register:register,
     home:home,
+    dashboard:dashboard,
 }
