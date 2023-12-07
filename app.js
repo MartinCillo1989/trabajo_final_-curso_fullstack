@@ -2,6 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const viewsRouter = require('./routers/viewsRoutes')
 const userRoutes = require('./routers/userRoutes')
+const productsRoutes = require('./routers/productsRoute')
 const cookieParser = require('cookie-parser')
 const cors = require('cors')
 const { default: mongoose } = require('mongoose')
@@ -21,7 +22,7 @@ app.use('/',viewsRouter)
 
 //rutas de recursos
 app.use('/api/user/',userRoutes)
-
+app.use('/api/product/',productsRoutes)
 
 app.listen(port, async () => {
   try{
