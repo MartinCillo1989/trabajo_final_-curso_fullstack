@@ -23,7 +23,7 @@ const create = async (req,res)=>{
 
 const update = async (req,res)=>{
     try{
-        await Product.findByIdAndUpdate(req.body.productId)
+        await Product.findByIdAndUpdate(req.body.productId,req.body)
         res.status(200).end()
     }catch(error){
         res.status(500).end()
@@ -33,7 +33,7 @@ const update = async (req,res)=>{
 
 const remove = async (req,res)=>{
     try{
-        await Product.findByIdAndRemove(req.body.productId)
+        await Product.deleteOne({_id:req.body.productId})
         res.status(200).end()
     }catch(error){
         res.status(500).end()
