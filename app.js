@@ -3,6 +3,8 @@ const bodyParser = require('body-parser')
 const viewsRouter = require('./routers/viewsRoutes')
 const userRoutes = require('./routers/userRoutes')
 const productsRoutes = require('./routers/productsRoute')
+const cartRoutes = require('./routers/cartRoutes')
+
 const cookieParser = require('cookie-parser')
 const cors = require('cors')
 const { default: mongoose } = require('mongoose')
@@ -21,7 +23,8 @@ app.set('view engine','ejs');
 app.use('/',viewsRouter)
 
 //rutas de recursos
-app.use('/api/user/',userRoutes)
+app.use('/api/user/', userRoutes)
+app.use('/api/cart/', cartRoutes)
 app.use('/api/product/',productsRoutes)
 
 app.listen(port, async () => {

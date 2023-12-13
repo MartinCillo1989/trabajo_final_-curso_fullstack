@@ -4,10 +4,10 @@ const productsControllers = require('../controllers/productsControllers')
 const auth = require('../middlewares/auth')
 const isAdmin = require('../middlewares/admin')
 
-route.get('/',productsControllers.get)
-route.post('/',productsControllers.create)
-route.put('/',productsControllers.update)
-route.delete('/',productsControllers.remove)
+route.get('/',auth,productsControllers.get)
+route.post('/',auth,isAdmin,productsControllers.create)
+route.put('/',auth,isAdmin,productsControllers.update)
+route.delete('/',auth,isAdmin,productsControllers.remove)
 
 
 
