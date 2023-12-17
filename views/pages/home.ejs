@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./home.css">
-    <title>Ecommerce - Tienda de Ropa en Línea</title>
+    <title>Vive Sport - Tienda de Ropa en Línea</title>
 </head>
 <body>
-     <header>
+    <header>
         <nav class="navbar">
             <div class="logo">
-                <span>Ecommerce</span>
+                <span>Vive Sport</span>
             </div>
             <div class="search">
-                <input type="text" placeholder="Buscar productos...">
+                <input type="text" id="searchInput" placeholder="Buscar productos...">
             </div>
             <div class="user">
                 <img src="./photo_profile.webp" alt="Usuario" class="user-image" onclick="toggleMenu()">
@@ -33,21 +33,33 @@
     </header>
 
     <main>
+        <aside>
+            <h3>Categorías de productos</h3>
+            <ul>
+                <li><a href="#">Camisetas</a></li>
+                <li><a href="#">Pantalones</a></li>
+                <li><a href="#">Shorts</a></li>
+                <li><a href="#">Botines</a></li>
+                <li><a href="#">Accesorios</a></li>
+          
+            </ul>
+        </aside>
         <h2 id="subtitle">Nuestros productos</h2>
         <div class="product-grid">
-            <!-- Aquí irán los productos en forma de cuadrícula -->
-            <!-- Ejemplo de un producto -->
-            <% for (let i=0; i < products.length; i++) {%>
-                <% var existInCart = cart.some(id=>products[i]._id.toString() === id.toString())%>
-                <div class="product" >
-                    <img src="<%= products[i].image%>" alt="Producto">
+      
+            <% for (let i=0; i < products.length; i++) { %>
+                <% var existInCart = cart.some(id => products[i]._id.toString() === id.toString()) %>
+                <div class="product">
+                    <img src="<%= products[i].image %>" alt="Producto">
                     <h3><%= products[i].name %></h3>
                     <p><%= products[i].description %>.</p>
                     <p><%= products[i].price %></p>
-                    <button class="<%= existInCart ? "delete-to-cart" : ""%>" onclick="addProductToCart('<%= products[i]._id %>')"><%= existInCart ? "sacar del carrito" : "Agregar al Carrito"%></button>
+                    <button class="<%= existInCart ? "delete-to-cart" : "" %>" onclick="addProductToCart('<%= products[i]._id %>')">
+                        <%= existInCart ? "Sacar del Carrito" : "Agregar al Carrito" %>
+                    </button>
                 </div>
-            <%} %>
-            <!-- Repetir este bloque para cada producto -->
+            <% } %>
+           
         </div>
 
         <div class="pagination">
@@ -55,15 +67,13 @@
             <button id="pagination-active">1</button>
             <button>2</button>
             <button>3</button>
-            <!-- Agregar más botones según sea necesario -->
+         
         </div>
-
-       
     </main>
 
     <footer>
         <!-- Contenido del footer -->
-        <p>&copy; 2023 Ecommerce - Tienda de Ropa en Línea. Todos los derechos reservados.</p>
+        <p>Vive Sport &copy; 2023 MyM Sistemas. Todos los derechos reservados.</p>
     </footer>
 
     <script>
@@ -71,11 +81,27 @@
             var userMenu = document.getElementById("userMenu");
             userMenu.style.display = (userMenu.style.display === "flex") ? "none" : "flex";
         }
-        async function logout(){
-           await fetch('http://localhost:3000/api/logout')
-           document.cookie = "token= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
-           window.location.href='http://localhost:3000/login'
+
+        async function logout() {
+            await fetch('http://localhost:3000/api/logout');
+            document.cookie = "token= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+            window.location.href = 'http://localhost:3000/login';
         }
+
+        function searchProducts() {
+            const searchInput = document.getElementById("searchInput");
+            const searchTerm = searchInput.value.toLowerCase();
+
+            const products = document.querySelectorAll('.product');
+            products.forEach(product => {
+                const productName = product.querySelector('h3').innerText.toLowerCase();
+                const isVisible = productName.includes(searchTerm);
+                product.style.display = isVisible ? 'block' : 'none';
+            });
+        }
+
+        const searchInput = document.getElementById("searchInput");
+        searchInput.addEventListener("input", searchProducts);
     </script>
     <script src="./scripts/home.js"></script>
 </body>

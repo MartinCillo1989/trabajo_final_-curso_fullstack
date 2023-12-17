@@ -68,6 +68,60 @@ header {
     color: #3498db;
 }
 
+aside {
+    width: 200px;
+    padding: 20px;
+    background-color: #333;
+    position: fixed;
+    left: 0;
+    top: 55px;
+    height: 100%;
+}
+
+
+aside h3 {
+    color: #007bff; 
+    font-size: 1.5em;
+    margin-bottom: 20px; 
+    text-transform: uppercase;
+
+   
+    transition: color 0.3s ease-in-out;
+}
+
+aside h3:hover {
+    color: #c3d808; 
+}
+
+
+aside ul {
+    list-style: none;
+    padding: 0;
+}
+
+aside ul li {
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease-in-out, text-align 0.3s ease-in-out;
+}
+
+
+aside ul li:hover {
+    background-color: #555;
+    text-align: center;
+}
+
+aside a {
+    text-decoration: none;
+    color: #fff; 
+}
+aside h3 {
+    color: #007bff; 
+    font-size: 1.5em; 
+    margin-bottom: 20px; 
+    text-transform: uppercase; 
+    text-align: center;
+}
+
 main {
     padding: 20px;
 }
