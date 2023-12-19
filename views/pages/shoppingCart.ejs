@@ -24,7 +24,7 @@
                     <a href="#">Carrito de Compras</a>
                     <a href="#">Mis compras</a>
                     <a href="#">Editar Perfil</a>
-                    <a href="#">Salir</a>
+                    <a onclick="logout()">Salir</a>
                 </div>
             </div>
         </nav>
@@ -46,7 +46,7 @@
                 <p>Cantidad: <span class="quantity">1</span></p>
                 <button class="quantity-btn" onclick="increaseQuantity(this)">+</button>
                 <button class="quantity-btn" onclick="decreaseQuantity(this)">-</button>
-                <button class="remove-btn" onclick="removeProduct(this)">Quitar</button>
+                <button class="remove-btn" onclick="removeProductToCart(this)">Quitar</button>
               </div>
             </li>
   
@@ -56,7 +56,7 @@
           <% }  %>
         
       </ul>
-      <p>Total de la Compra: <span id="total-price">$49.98</span></p>
+      <p>Total de la Compra: <span id="total-price">$0.00</span></p>
     </section>
 
     <section class="checkout">
@@ -94,6 +94,12 @@
       quantityElement.textContent = currentQuantity + 1;
     }
 
+    async function logout() {
+            await fetch('http://localhost:3000/api/logout');
+            document.cookie = "token= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+            window.location.href = 'http://localhost:3000/login';
+        }
+
     function decreaseQuantity(btn) {
       var quantityElement = btn.parentNode.querySelector('.quantity');
       var currentQuantity = parseInt(quantityElement.textContent);
@@ -101,13 +107,7 @@
         quantityElement.textContent = currentQuantity - 1;
       }
     }
-
-    function removeProduct(btn) {
-      var listItem = btn.parentNode.parentNode;
-      listItem.parentNode.removeChild(listItem);
-    }
-
-    document.getElementById('checkout-form').addEventListener('submit', function(event) {
+      document.getElementById('checkout-form').addEventListener('submit', function(event) {
       event.preventDefault();
       openModal();
     });
@@ -122,7 +122,8 @@
            document.cookie = "token= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
            window.location.href = 'http://localhost:3000/login'
         }
-  </script>
 
+  </script>
+  <script src="./scripts/shoppingCart.js"></script>
 </body>
 </html>

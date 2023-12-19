@@ -11,3 +11,4 @@ const addProductToCart = async (productId)=>{
     console.log('data',data)
     
 }
+

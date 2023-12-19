@@ -18,15 +18,21 @@ const update = async (req,res)=>{
     }
     
 }
-/*
+
 const remove = async (req,res)=>{
-    try{
-        await Product.deleteOne({_id:req.body.productId})
+    try{    
+      
+        const cart = await Cart.findOne({userId:req.user._id})
+      
+        cart.products = cart.products.filter((product) =>{return product !== req.body.productId});
+        cart.save()
         res.status(200).end()
     }catch(error){
+        console.log("no deletea2")
         res.status(500).end()
     }
 }
+/*
 const get = async (req,res)=>{
     try{
         const Cart = await Cart.find({userId:req.user._id})
@@ -41,6 +47,6 @@ const get = async (req,res)=>{
 
 module.exports={
     update:update,
-   // remove:remove,
+    remove:remove,
     //get:get,
 }
