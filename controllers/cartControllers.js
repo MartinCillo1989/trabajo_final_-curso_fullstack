@@ -24,7 +24,8 @@ const remove = async (req,res)=>{
       
         const cart = await Cart.findOne({userId:req.user._id})
       
-        cart.products = cart.products.filter((product) =>{return product !== req.body.productId});
+        cart.products = cart.products.filter((product) =>{
+            return product.toString() !== req.body.productId.toString()});
         cart.save()
         res.status(200).end()
     }catch(error){

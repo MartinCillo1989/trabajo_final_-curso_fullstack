@@ -10,6 +10,6 @@ const removeProductToCart = async (productId)=>{
 }
 
 )
-
+window.location.reload()
 
 }

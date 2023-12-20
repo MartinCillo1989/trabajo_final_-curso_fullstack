@@ -9,6 +9,6 @@ const addProductToCart = async (productId)=>{
         }
     })
     console.log('data',data)
-    
+    window.location.reload()
 }
 

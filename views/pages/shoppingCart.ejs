@@ -46,7 +46,7 @@
                 <p>Cantidad: <span class="quantity">1</span></p>
                 <button class="quantity-btn" onclick="increaseQuantity(this)">+</button>
                 <button class="quantity-btn" onclick="decreaseQuantity(this)">-</button>
-                <button class="remove-btn" onclick="removeProductToCart(this)">Quitar</button>
+                <button class="remove-btn" onclick="removeProductToCart('<%= products[i]._id %>')">Quitar</button>
               </div>
             </li>
   
