@@ -7,8 +7,13 @@ const addProductToCart = async (productId)=>{
         headers:{
             "Content-Type": "application/json"
         }
+    }).then((res)=>{
+        if (res.ok) {
+           
+            window.location.reload();
+        } else {
+           
+        }
     })
-    console.log('data',data)
-    window.location.reload()
-}
+    }
 

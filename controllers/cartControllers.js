@@ -9,10 +9,11 @@ const update = async (req,res)=>{
         const cart = await Cart.findOne({userId:req.user._id})
         cart.products.push(req.body.productId)
         cart.save()
+       
         
         res.status(200).end()
     }catch(error){
-        console.log('hola mundo')
+        
         console.log(error)
         res.status(500).end()
     }

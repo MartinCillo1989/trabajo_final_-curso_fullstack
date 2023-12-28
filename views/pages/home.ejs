@@ -50,10 +50,12 @@
             <% for (let i=0; i < products.length; i++) { %>
                 <% var existInCart = cart.some(id => products[i]._id.toString() === id.toString()) %>
                 <div class="product">
-                    <img src="<%= products[i].image %>" alt="Producto">
+                    <a href="/api/product/<%= products[i]._id %>">
+                        <img src="<%= products[i].image %>" alt="Producto">
+                      </a>
                     <h3><%= products[i].name %></h3>
                     <p><%= products[i].description %>.</p>
-                    <p><%= products[i].price %></p>
+                    <p>$<%= products[i].price %></p>
                     <button class="<%= existInCart ? "delete-to-cart" : "" %>" onclick="addProductToCart('<%= products[i]._id %>')">
                         <%= existInCart ? "Sacar del Carrito" : "Agregar al Carrito" %>
                     </button>

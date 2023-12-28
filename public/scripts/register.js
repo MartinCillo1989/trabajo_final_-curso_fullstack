@@ -20,7 +20,12 @@ form.addEventListener('submit',(event)=>{
                 "Content-Type": "application/json",
             }
         }).then((res)=>{
-            console.log('res',res)
+            if (res.ok) {
+               
+                window.location.href = '/login';
+            } else {
+               
+            }
         })
     }else{
         document.getElementById("password-no-match").style.display= 'block'

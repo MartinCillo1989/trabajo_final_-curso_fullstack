@@ -35,29 +35,30 @@
       <h2>Productos en el Carrito</h2>
       <ul id="cart-items">
         <!-- Ejemplos de productos -->
-        <% if(products.length > 0){ %>
-          <% for (var i =0; i < products.length;  i++ ) { %>
-
-            <li>
-              <img src=<%= products[i].image %> alt="Producto 1">
-              <div class="product-info">
-                <h3><%= products[i].name %></h3>
-                <p>Precio:<%= products[i].price %></p>
-                <p>Cantidad: <span class="quantity">1</span></p>
-                <button class="quantity-btn" onclick="increaseQuantity(this)">+</button>
-                <button class="quantity-btn" onclick="decreaseQuantity(this)">-</button>
-                <button class="remove-btn" onclick="removeProductToCart('<%= products[i]._id %>')">Quitar</button>
-              </div>
-            </li>
-  
+        <% if (products.length > 0) { %>
+          <ul>
+            <% var totalPrice = 0; %>
+            <% for (var i = 0; i < products.length; i++) { %>
+              <li>
+                <img src="<%= products[i].image %>" alt="Producto 1">
+                <div class="product-info">
+                  <h3><%= products[i].name %></h3>
+                  <p>Precio: $<span class="product-price"><%= products[i].price %></span></p>
+                  <p>Cantidad: <span class="quantity">1</span></p>
+                  <button class="quantity-btn" onclick="increaseQuantity(this)">+</button>
+                  <button class="quantity-btn" onclick="decreaseQuantity(this)">-</button>
+                  <button class="remove-btn" onclick="removeProductToCart('<%= products[i]._id %>')">Quitar</button>
+                </div>
+              </li>
+              <% totalPrice += products[i].price; %>
             <% } %>
-        <% }else {  %>
-          <p> todavia no tienes productos en tu carrito de compras</p>
-          <% }  %>
+          </ul>
+          <p>Total de la Compra: $<span id="total-price"><%= totalPrice.toFixed(2) %></span></p>
+        <% } else { %>
+          <p>Todavía no tienes productos en tu carrito de compras</p>
+        <% } %>
+        </section>
         
-      </ul>
-      <p>Total de la Compra: <span id="total-price">$0.00</span></p>
-    </section>
 
     <section class="checkout">
       <h2>Ingresa tu Dirección</h2>
